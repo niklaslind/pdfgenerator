@@ -1,2 +1,5 @@
 nodejs/node_modules
 grails/pdfgenerator/target
+mvn/pdfgenerator/.idea
+mvn/pdfgenerator/.idea
+mvn/pdfgenerator/target
