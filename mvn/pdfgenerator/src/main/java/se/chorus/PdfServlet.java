@@ -13,7 +13,7 @@ import org.apache.commons.io.IOUtils;
 /**
 * Created by nli on 26/08/14.
 */
-@WebServlet(name = "htmltopdf", urlPatterns = {"/render.pdf"})
+@WebServlet(urlPatterns = {"/pdf"})
 public class PdfServlet extends HttpServlet {
 
     /**
@@ -28,39 +28,21 @@ public class PdfServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("Enter!");
         Runtime rt = Runtime.getRuntime();
-        String url = request.getParameter("url");
-        String outputFileName = request.getParameter("filename");
         Double zoom = 1.0;
-        try{
-            zoom = Double.parseDouble(request.getParameter("zoom"));
-        }catch (Exception ex){}
 
         Process p;
+        response.addHeader("Content-Disposition", "attachment; filename=\"out.pdf\"");
 
-        if (outputFileName != null) {
-            response.addHeader("Content-Disposition", "attachment; filename=\""+
-                    outputFileName +"\"");
-        }
-        if(url != null){
-            //hopefully this stops the program accessing local files.
-            if(! (url.startsWith("http://") || url.startsWith("https://"))  ){
-                url = "http://" + url;
-            }
-            p = rt.exec("wkhtmltopdf --disallow-local-file-access --zoom " + zoom + " "+ url +" -");
+        String html = IOUtils.toString(request.getInputStream());
 
-        }else{
-            String html = request.getParameter("html");
-            if(html == null){
-                response.sendError(404);
-                return;
-            }
-            p = rt.exec("wkhtmltopdf --disallow-local-file-access --zoom " + zoom + " - -");
-            IOUtils.write(html, p.getOutputStream());
-            p.getOutputStream().close();
-        }
-        //IOUtils.copy(p.getErrorStream(), System.out);
-        //p.getErrorStream().close();
+        System.out.println("html = "+html);
+
+        p = rt.exec("wkhtmltopdf - -");
+        IOUtils.write(html, p.getOutputStream());
+        p.getOutputStream().close();
+
         try {
             IOUtils.copy(p.getInputStream(), response.getOutputStream());
         } finally {
