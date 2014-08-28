@@ -40,6 +40,11 @@ server.post('/pdf', function create(req, res, next) {
     createPdf(req,res);
 });
 
+server.get('/about', function (req, res, next) {
+    res.write('PdfApp is alive');
+    res.end();
+});
+
 
 console.log('Test: curl -X POST -d@data/index.html http://localhost:8080/pdf')
 server.listen(8080);
