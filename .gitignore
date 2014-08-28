@@ -3,3 +3,5 @@ grails/pdfgenerator/target
 mvn/pdfgenerator/.idea
 mvn/pdfgenerator/.idea
 mvn/pdfgenerator/target
+*.iml
+*.iws
