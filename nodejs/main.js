@@ -20,23 +20,26 @@ server.use (function(req, res, next) {
 
 
 //Get html-string from req.rawBody, generate PDF and write to response
-function pdf(req, res) {
+function createPdf(req, res) {
+    console.log('enter createPdf');
     var html = req.rawBody
     var options = {}
     var callback = function(err, buffer) {
+        console.log('enter callback');
         if (err) return console.log(err);
-        response.writeHead(200, { 'Content-Type': 'text/plain',
+        res.writeHead(200, { 'Content-Type': 'text/plain',
                                   'Trailer': 'Content-MD5' });
-        response.write(buffer);
-        response.addTrailers({'Content-MD5': "7895bf4b8828b55ceaf47747b4bca667"});
-        response.end();
+        res.write(buffer);
+        res.addTrailers({'Content-MD5': "7895bf4b8828b55ceaf47747b4bca667"});
+        res.end();
     }
     pdf.create(html, options, callback)
 }
 
 
 server.post('/pdf', function create(req, res, next) {
-    pdf(req,res);
+    console.log('enter /pdf');
+    createPdf(req,res);
 });
 
 
