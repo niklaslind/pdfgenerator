@@ -1,3 +1,4 @@
+var fs = require('fs');
 var pdf = require('html-pdf');
 var restify = require('restify');
 
@@ -27,10 +28,8 @@ function createPdf(req, res) {
     var callback = function(err, buffer) {
         console.log('enter callback');
         if (err) return console.log(err);
-        res.writeHead(200, { 'Content-Type': 'text/plain',
-                                  'Trailer': 'Content-MD5' });
+        res.writeHead(200, { 'Content-Type': 'application/pdf' });
         res.write(buffer);
-        res.addTrailers({'Content-MD5': "7895bf4b8828b55ceaf47747b4bca667"});
         res.end();
     }
     pdf.create(html, options, callback)
@@ -38,7 +37,6 @@ function createPdf(req, res) {
 
 
 server.post('/pdf', function create(req, res, next) {
-    console.log('enter /pdf');
     createPdf(req,res);
 });
 
