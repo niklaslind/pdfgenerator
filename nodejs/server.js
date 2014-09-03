@@ -46,13 +46,14 @@ function pdfLinkResponse(pdfId, res) {
 function pdfContentResponse(pdfId, res) {
     var buffer = cache.get(pdfId);
     if (buffer === undefined) {
-        res.send(404);
-        res.end();
+        res.status(404);
     } else {
-        res.writeHead(200, { 'Content-Type': 'application/pdf' });
+        res.writeHead(200, {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': 'attachment; filename=formresults.pdf' });
         res.write(buffer);
-        res.end();
     }    
+    res.end();
 }
 
 
@@ -72,7 +73,9 @@ server.get('/pdf', function(req, res, next) {
 
 
 server.get('/about', function (req, res, next) {
-    res.write('PdfApp is alive');
+    res.write('PdfApp is alive\n');
+    res.write('curl -X POST -d@data/index.html http://localhost:8080/pdf\n');
+    res.write('curl -X GET http://localhost:8080/pdf?pdfid=XYZ');
     res.end();
 });
 
