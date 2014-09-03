@@ -4,41 +4,52 @@ var restify = require('restify');
 
 var server = restify.createServer({name: 'PdfApp'});
 
+server
+  .use(restify.fullResponse())
+  .use(restify.bodyParser())
 
-//This gets rawBody from request. 
-//Should not be needed!!!
-server.use (function(req, res, next) {
-    var data = '';
-    req.setEncoding('utf8');
-    req.on('data', function(chunk) {
-       data += chunk;
-    });
-    req.on('end', function() {
-        req.rawBody = data;
-        next()
-    });
-});
+
+var LRU = require("lru-cache")
+  , options = { max: 500
+              , length: function (n) { return n * 2 }
+              , dispose: function (key, n) { n.close() }
+              , maxAge: 1000 * 60 * 60 }
+  , cache = LRU(options)
+  , otherCache = LRU(50) // sets just the max size
 
 
 //Get html-string from req.rawBody, generate PDF and write to response
 function createPdf(req, res) {
-    console.log('enter createPdf');
-    var html = req.rawBody
+    var html = req.body
     var options = {}
     var callback = function(err, buffer) {
         console.log('enter callback');
         if (err) return console.log(err);
+        storePdf(buffer);
         res.writeHead(200, { 'Content-Type': 'application/pdf' });
-        res.write(buffer);
+        res.write(cache.get("1"));
         res.end();
     }
     pdf.create(html, options, callback)
 }
 
+function storePdf(buffer) {
+    cache.set("1", buffer);
+    return 1;
+}
 
-server.post('/pdf', function create(req, res, next) {
+
+
+
+server.post('/pdf', function(req, res, next) {
     createPdf(req,res);
 });
+
+server.get('/pdf/:id', function(req, res, next) {
+    console.log('GET /pdf:'+id )
+});
+
+
 
 server.get('/about', function (req, res, next) {
     res.write('PdfApp is alive');

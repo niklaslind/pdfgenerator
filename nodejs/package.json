@@ -5,7 +5,8 @@
     "dependencies": {
         "phantomjs": "1.9.x",
         "html-pdf": "0.2.x",
-        "restify": "2.8.x"
+        "restify": "2.8.x",
+        "lru-cache": "*"
   },
   "devDependencies": {
     "vows": "0.7.x"
