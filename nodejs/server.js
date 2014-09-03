@@ -4,9 +4,9 @@ var restify = require('restify');
 
 var server = restify.createServer({name: 'PdfApp'});
 
-server
-  .use(restify.fullResponse())
-  .use(restify.bodyParser())
+server.use(restify.acceptParser(server.acceptable));
+server.use(restify.queryParser());
+server.use(restify.bodyParser());
 
 
 var LRU = require("lru-cache")
@@ -18,35 +18,55 @@ var LRU = require("lru-cache")
   , otherCache = LRU(50) // sets just the max size
 
 
-//Get html-string from req.rawBody, generate PDF and write to response
+//Get html-string from req.body, generate PDF and write to response
 function createPdf(req, res) {
     var html = req.body
     var options = {}
-    var callback = function(err, buffer) {
-        console.log('enter callback');
+    pdf.create(html, options, function(err, buffer) {
         if (err) return console.log(err);
-        storePdf(buffer);
-        res.writeHead(200, { 'Content-Type': 'application/pdf' });
-        res.write(cache.get("1"));
-        res.end();
-    }
-    pdf.create(html, options, callback)
+        var pdfId = storePdf(buffer);
+        pdfLinkResponse(pdfId, res);
+    });        
 }
 
 function storePdf(buffer) {
-    cache.set("1", buffer);
-    return 1;
+    var key = new Date().getTime();
+    cache.set(key, buffer);
+    return key;
+}
+
+
+function pdfLinkResponse(pdfId, res) {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.write(JSON.stringify({pdfurl: '/pdf?pdfid='+pdfId}));
+    res.end();
+}
+
+
+function pdfContentResponse(pdfId, res) {
+    var buffer = cache.get(pdfId);
+    if (buffer === undefined) {
+        res.send(404);
+        res.end();
+    } else {
+        res.writeHead(200, { 'Content-Type': 'application/pdf' });
+        res.write(buffer);
+        res.end();
+    }    
 }
 
 
 
 
 server.post('/pdf', function(req, res, next) {
+    console.log('POST /pdf:');
     createPdf(req,res);
 });
 
-server.get('/pdf/:id', function(req, res, next) {
-    console.log('GET /pdf:'+id )
+server.get('/pdf', function(req, res, next) {
+    console.log('GET /pdf: '+req.params.pdfid );
+    pdfContentResponse(req.params.pdfid, res);
+    return next();
 });
 
 
