@@ -38,7 +38,7 @@ function storePdf(buffer) {
 
 function pdfLinkResponse(pdfId, res) {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify({pdfurl: '/pdf?pdfid='+pdfId}));
+    res.write(JSON.stringify({pdfurl: '/pdf/'+pdfId}));
     res.end();
 }
 
@@ -64,7 +64,7 @@ server.post('/pdf', function(req, res, next) {
     createPdf(req,res);
 });
 
-server.get('/pdf', function(req, res, next) {
+server.get('/pdf/:pdfid', function(req, res, next) {
     console.log('GET /pdf: '+req.params.pdfid );
     pdfContentResponse(req.params.pdfid, res);
     return next();
