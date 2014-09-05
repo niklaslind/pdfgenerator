@@ -10,10 +10,9 @@ server.use(restify.bodyParser());
 
 
 var LRU = require("lru-cache")
-  , options = { max: 500
-              , length: function (n) { return n * 2 }
-              , dispose: function (key, n) { n.close() }
-              , maxAge: 1000 * 60 * 60 }
+  , options = {max: 2000000, 
+              length: function (n) { return n.length }
+              , maxAge: 1000 * 60  }
   , cache = LRU(options)
   , otherCache = LRU(50) // sets just the max size
 
@@ -75,7 +74,7 @@ server.get('/pdf/:pdfid', function(req, res, next) {
 server.get('/about', function (req, res, next) {
     res.write('PdfApp is alive\n');
     res.write('curl -X POST -d@data/index.html http://localhost:8080/pdf\n');
-    res.write('curl -X GET http://localhost:8080/pdf?pdfid=XYZ');
+    res.write('curl -X GET http://localhost:8080/pdf/<pdfid>');
     res.end();
 });
 
