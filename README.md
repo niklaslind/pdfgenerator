@@ -35,6 +35,17 @@ Production:
     forever server.js
 
 
+Test
+====
+
+Starta server lokalt: node server.js
+
+cd test
+./test.sh
+
+Detta script skickar 20 parallella requests till localhost:8080/pdf
+och hämtar hem och öppnar PDF:erna.
+
 
 Beroenden
 =========
