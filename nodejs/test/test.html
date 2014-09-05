@@ -1,0 +1,377 @@
+<html><head><link href="https://dl.dropboxusercontent.com/u/1250453/vpv-formresults-0.0.0.css" rel="stylesheet" /></head><body><div id="pdf">
+
+  <!-- ngIf: form.$resolved --><div ng-if="form.$resolved" class="ng-scope">
+    <div class="content">
+      <div id="form-container" vpv-form-summary="form.form" class="ng-isolate-scope"><div class="summary-page" id="thank-you">
+  <h1 class="ng-binding">Levnadsvanor</h1>
+
+  <div class="answers">
+    <!-- ngRepeat: page in formModel.answeredPage --><div data-ng-repeat="page in formModel.answeredPage" class="ng-scope">
+      <!-- ngRepeat: block in page.questionBlocks --><div data-ng-repeat="block in page.questionBlocks" class="ng-scope">
+        <div class="single-block">
+          <div class="padded">
+            <!-- ngIf: block.subject --><h2 ng-if="block.subject" class="block-title ng-binding ng-scope">Testa dina vanor: TOBAK</h2><!-- end ngIf: block.subject -->
+            <span class="expand-guidelines" ng-click="expand_guidelines(block)" ng-show="blockHasGuidelines(page.pageNumber, block.blockNumber)">Visa alla riktlinjer</span>
+            <table>
+              <tbody><tr>
+                <th colspan="2" class="ng-binding">Fråga</th>
+                <th class="ng-binding">Svar</th>
+                <th></th>
+              </tr>
+              <!-- ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">1</span> </td>
+                <td class="ng-binding">Hur mycket tycker du om att röka?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    10
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>All tobaksanvändning, oavsett konsumtion, är skadlig för hälsan.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">2</span> </td>
+                <td class="ng-binding">Hur många cigaretter röker du per dag?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    10-19 cigaretter per dag
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">3</span> </td>
+                <td class="ng-binding">Mina snusvanor</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    Jag har aldrig varit snusare
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>All tobaksanvändning, oavsett konsumtion, är skadlig för hälsan.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --> 
+            </tbody></table>
+          </div>
+          <!-- 
+          <span ng-if="blockHasGuidelines(page.pageNumber, block.blockNumber)">
+            <h3>{{'form.summary.guidelines.header'|trans}}</h3>
+            <p>
+              <span ng-repeat="guideline in guidelines | filter:{'type':'guideline', 'pageNumber':page.pageNumber, 'blockNumber':block.blockNumber}" data-chorus-markdown="guideline.advice">
+                <br ng-if="!$last">
+              </span>
+            </p>
+          </span>
+           -->
+        </div>
+      </div><!-- end ngRepeat: block in page.questionBlocks -->
+    </div><!-- end ngRepeat: page in formModel.answeredPage --><div data-ng-repeat="page in formModel.answeredPage" class="ng-scope">
+      <!-- ngRepeat: block in page.questionBlocks --><div data-ng-repeat="block in page.questionBlocks" class="ng-scope">
+        <div class="single-block">
+          <div class="padded">
+            <!-- ngIf: block.subject --><h2 ng-if="block.subject" class="block-title ng-binding ng-scope">Testa dina vanor: ALKOHOL</h2><!-- end ngIf: block.subject -->
+            <span class="expand-guidelines" ng-click="expand_guidelines(block)" ng-show="blockHasGuidelines(page.pageNumber, block.blockNumber)">Visa alla riktlinjer</span>
+            <table>
+              <tbody><tr>
+                <th colspan="2" class="ng-binding">Fråga</th>
+                <th class="ng-binding">Svar</th>
+                <th></th>
+              </tr>
+              <!-- ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">1</span> </td>
+                <td class="ng-binding">Jag är:</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    Man
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">2</span> </td>
+                <td class="ng-binding">Hur många glas alkohol dricker du varje vecka?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    1-4 standardglas
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>15 glas eller fler per vecka anses vara en riskfylld konsumtion för en man.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">3</span> </td>
+                <td class="ng-binding">Hur ofta dricker du fem (5) glas eller mer per tillfälle?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    Varje månad
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>5 eller fler glas per tillfälle anses vara en riskfylld konsumtion för en man.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --> 
+            </tbody></table>
+          </div>
+          <!-- 
+          <span ng-if="blockHasGuidelines(page.pageNumber, block.blockNumber)">
+            <h3>{{'form.summary.guidelines.header'|trans}}</h3>
+            <p>
+              <span ng-repeat="guideline in guidelines | filter:{'type':'guideline', 'pageNumber':page.pageNumber, 'blockNumber':block.blockNumber}" data-chorus-markdown="guideline.advice">
+                <br ng-if="!$last">
+              </span>
+            </p>
+          </span>
+           -->
+        </div>
+      </div><!-- end ngRepeat: block in page.questionBlocks -->
+    </div><!-- end ngRepeat: page in formModel.answeredPage --><div data-ng-repeat="page in formModel.answeredPage" class="ng-scope">
+      <!-- ngRepeat: block in page.questionBlocks --><div data-ng-repeat="block in page.questionBlocks" class="ng-scope">
+        <div class="single-block">
+          <div class="padded">
+            <!-- ngIf: block.subject --><h2 ng-if="block.subject" class="block-title ng-binding ng-scope">Testa dina vanor: FYSISK AKTIVITET</h2><!-- end ngIf: block.subject -->
+            <span class="expand-guidelines" ng-click="expand_guidelines(block)" ng-show="blockHasGuidelines(page.pageNumber, block.blockNumber)">Visa alla riktlinjer</span>
+            <table>
+              <tbody><tr>
+                <th colspan="2" class="ng-binding">Fråga</th>
+                <th class="ng-binding">Svar</th>
+                <th></th>
+              </tr>
+              <!-- ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">1</span> </td>
+                <td class="ng-binding">Hur mycket tid ägnar du en vanlig vecka åt fysisk träning som får dig att bli andfådd?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    90-120 minuter (1,5 - 2 timmar)
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>Fysisk aktivitet som ger ökad puls och snabbare användning i 150 minuter per vecka. Intensiv träning som ger markant ökning av puls och andning i 75 minuter per vecka. I det senare fallet multipliceras antalet minuter med 2.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">2</span> </td>
+                <td class="ng-binding">Hur mycket rör du på dig varje vecka?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    Mindre än 30 minuter
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>All rörelse är viktig, det är bättre att röra sig lite än inte alls. Man vet idag att det ger positiva effekter på hälsan att t ex resa sig upp och ta regelbundna pauser för att undvika långvarigt stillasittande.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --> 
+            </tbody></table>
+          </div>
+          <!-- 
+          <span ng-if="blockHasGuidelines(page.pageNumber, block.blockNumber)">
+            <h3>{{'form.summary.guidelines.header'|trans}}</h3>
+            <p>
+              <span ng-repeat="guideline in guidelines | filter:{'type':'guideline', 'pageNumber':page.pageNumber, 'blockNumber':block.blockNumber}" data-chorus-markdown="guideline.advice">
+                <br ng-if="!$last">
+              </span>
+            </p>
+          </span>
+           -->
+        </div>
+      </div><!-- end ngRepeat: block in page.questionBlocks -->
+    </div><!-- end ngRepeat: page in formModel.answeredPage --><div data-ng-repeat="page in formModel.answeredPage" class="ng-scope">
+      <!-- ngRepeat: block in page.questionBlocks --><div data-ng-repeat="block in page.questionBlocks" class="ng-scope">
+        <div class="single-block">
+          <div class="padded">
+            <!-- ngIf: block.subject --><h2 ng-if="block.subject" class="block-title ng-binding ng-scope">Testa dina vanor: MAT</h2><!-- end ngIf: block.subject -->
+            <span class="expand-guidelines" ng-click="expand_guidelines(block)" ng-show="blockHasGuidelines(page.pageNumber, block.blockNumber)">Visa alla riktlinjer</span>
+            <table>
+              <tbody><tr>
+                <th colspan="2" class="ng-binding">Fråga</th>
+                <th class="ng-binding">Svar</th>
+                <th></th>
+              </tr>
+              <!-- ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">1</span> </td>
+                <td class="ng-binding">Hur ofta äter du grönsaker och/eller rotfrukter (färska, frysta eller tillagade)?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    En gång i veckan eller mer sällan
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>Rekommendationen är motsvarande två rejäla nävar grönsaker om dagen. Grönsaker och frukt sammanräknat ska bli 500 gram per dag.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">2</span> </td>
+                <td class="ng-binding">Hur ofta äter du frukt och/eller bär (färska, frysta, konserverade, juice, etc)?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    Två gånger per dag eller oftare
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>Rekommendationen är motsvarande tre frukter om dagen. Frukt och grönsaker sammanräknat ska bli 500 gram per dag.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">3</span> </td>
+                <td class="ng-binding">Hur ofta äter du fisk eller skaldjur som huvudrätt, i sallad eller som pålägg?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    Två gånger i veckan
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>Rekommendation är att äta fisk och skaldjur två till tre gånger i veckan.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --><tr ng-repeat-start="question in block.question | filter:{answer: '!!'}" ng-class="{'expanded': question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'selectable': find_guideline(page.pageNumber, block.blockNumber, question.questionNumber), 'hover': hovering}" ng-mouseenter="hovering = true" ng-mouseleave="hovering = false" ng-click="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber) &amp;&amp; (question.expanded = !question.expanded)" class="ng-scope selectable"> <!-- filter question.answer that is undefined -->
+                <td class="number"> <span class="border ng-binding">4</span> </td>
+                <td class="ng-binding">Hur ofta äter du kaffebröd, choklad/godis, chips eller läsk/saft?</td>
+                <td ng-init="answers = get_answers(question)">
+                  <!-- ngRepeat: answer in answers --><span ng-repeat="answer in answers" class="ng-binding ng-scope">
+                    En gång i veckan eller mer sällan
+                  </span><!-- end ngRepeat: answer in answers --></td>
+                <td class="plus" ng-init="question.expanded = false">
+                  <span ng-show="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="">
+                    <!-- <span class="icon" ng-if="!question.expanded">+</span>
+                    <span class="icon" ng-if="question.expanded">&ndash;</span> -->
+                    <span class="icon expand-guidelines" ng-class="{'expanded': question.expanded}">&nbsp;</span>
+                  </span>
+                  <span ng-hide="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" class="ng-hide">&nbsp;</span>
+                </td>
+              </tr>
+              <tr ng-show="question.expanded &amp;&amp; find_guideline(page.pageNumber, block.blockNumber, question.questionNumber)" ng-repeat-end="" class="ng-scope ng-hide">
+                <td ng-show="question.expanded" class="guideline ng-hide" colspan="4">
+                  <h4>Riktlinjer</h4>
+                  <p><span data-chorus-markdown="find_guideline(page.pageNumber, block.blockNumber, question.questionNumber).advice" class="ng-isolate-scope"><p>Allt intag av socker är skadligt för hälsan och intaget bör hållas så lågt som möljigt.</p></span></p>
+                </td>
+              </tr><!-- end ngRepeat: question in block.question | filter:{answer: '!!'} --> 
+            </tbody></table>
+          </div>
+          <!-- 
+          <span ng-if="blockHasGuidelines(page.pageNumber, block.blockNumber)">
+            <h3>{{'form.summary.guidelines.header'|trans}}</h3>
+            <p>
+              <span ng-repeat="guideline in guidelines | filter:{'type':'guideline', 'pageNumber':page.pageNumber, 'blockNumber':block.blockNumber}" data-chorus-markdown="guideline.advice">
+                <br ng-if="!$last">
+              </span>
+            </p>
+          </span>
+           -->
+        </div>
+      </div><!-- end ngRepeat: block in page.questionBlocks -->
+    </div><!-- end ngRepeat: page in formModel.answeredPage -->
+  </div>
+</div>
+</div>
+      <div class="clearfix"></div>
+    </div>
+    <!-- ngIf: !form.$resolved -->
+  </div><!-- end ngIf: form.$resolved -->
+</div></body></html>
