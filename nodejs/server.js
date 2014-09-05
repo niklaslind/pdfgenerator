@@ -10,7 +10,7 @@ server.use(restify.bodyParser());
 
 
 var LRU = require("lru-cache")
-  , options = {max: 2000000, 
+  , options = {
               length: function (n) { return n.length }
               , maxAge: 1000 * 60  }
   , cache = LRU(options)
@@ -22,7 +22,10 @@ function createPdf(req, res) {
     var html = req.body
     var options = {}
     pdf.create(html, options, function(err, buffer) {
-        if (err) return console.log(err);
+        if (err) {
+            console.log("Could not create PDF: "+err);
+            return
+        }
         var pdfId = storePdf(buffer);
         pdfLinkResponse(pdfId, res);
     });        
