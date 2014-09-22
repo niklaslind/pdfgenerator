@@ -11,7 +11,7 @@ Usage
 1) Generate PDF
 POST html-data http://<host>/pdf
 return: {pdfurl: /pdf/<pdfId>}
-
+    
 2) Get PDF
 GET http://<host>/pdf/<pdfId>
 return: pdf-document
@@ -28,10 +28,12 @@ Start application
 
 
 Develpment: 
+    npm install
     node server.js
 
 
 Production:
+    npm install
     forever server.js
 
 
@@ -57,12 +59,13 @@ wkhtmltopdf: http://wkhtmltopdf.org/
 
 Installation
 ============
+See Vagrant-file (vagrant/Vagrantfile) for example installation:
 
 * Installera wkhtmltopdf: http://wkhtmltopdf.org/
 
 * Installera Nodejs: http://nodejs.org/
 
-* Installera forever: https://www.npmjs.org/package/forever
+* Installera forever (PROD): https://www.npmjs.org/package/forever
 > npm install -g forever
 
 
