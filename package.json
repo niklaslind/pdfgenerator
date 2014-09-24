@@ -3,7 +3,7 @@
     "description": "POST html return PDF",
     "author": "Niklas Lind",
     "dependencies": {
-        "stream-buffers": "*",
+        "memory-streams": "*",
         "wkhtmltopdf": "*",
         "restify": "2.8.x",
         "lru-cache": "*",
