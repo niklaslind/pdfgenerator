@@ -3,14 +3,14 @@
     "description": "POST html return PDF",
     "author": "Niklas Lind",
     "dependencies": {
-        "phantomjs": "1.9.x",
-        "html-pdf": "0.2.x",
+        "stream-buffers": "*",
+        "wkhtmltopdf": "*",
         "restify": "2.8.x",
         "lru-cache": "*",
         "request": "*"
-  },
-  "devDependencies": {
-    "vows": "0.7.x"
-  },
-  "engine": "node >= 0.10.x"
+    },
+    "devDependencies": {
+        "vows": "0.7.x"
+    },
+    "engine": "node >= 0.10.x"
 }

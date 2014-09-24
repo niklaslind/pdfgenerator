@@ -1,6 +1,8 @@
+var wkhtmltopdf = require('wkhtmltopdf');
 var fs = require('fs');
-var pdf = require('html-pdf');
 var restify = require('restify');
+var streams = require('memory-streams');
+
 
 var server = restify.createServer({name: 'PdfApp'});
 
@@ -31,14 +33,12 @@ function createPdf(req, res) {
 
 function createSendPdf(html, filename, req, res) {
     var options = {}    
-    pdf.create(html, options, function(err, buffer) {
-        if (err) {
-            console.log("Could not create PDF: "+err);
-            return
-        }
-        var pdfId = storePdf(buffer);
+    var pdfStream = new streams.WritableStream();
+    wkhtmltopdf(html,function (code, signal) {
+        var pdfId = storePdf(pdfStream.toBuffer());
         pdfLinkResponse(pdfId, filename, res);
-    });        
+    }).pipe(pdfStream);    
+
 }
 
 
