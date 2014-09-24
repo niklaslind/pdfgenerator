@@ -20,16 +20,27 @@ var LRU = require("lru-cache")
 //Get html-string from req.body, generate PDF and write to response
 function createPdf(req, res) {
     var html = req.body
-    var options = {}
+    var filename = req.query.filename
+    if (filename === undefined) {
+        res.status(402);
+        res.send("Missing request parameter: filename");
+    } else
+        createSendPdf(html, filename, req, res);
+}
+
+
+function createSendPdf(html, filename, req, res) {
+    var options = {}    
     pdf.create(html, options, function(err, buffer) {
         if (err) {
             console.log("Could not create PDF: "+err);
             return
         }
         var pdfId = storePdf(buffer);
-        pdfLinkResponse(pdfId, res);
+        pdfLinkResponse(pdfId, filename, res);
     });        
 }
+
 
 function storePdf(buffer) {
     var key = new Date().getTime();
@@ -38,21 +49,23 @@ function storePdf(buffer) {
 }
 
 
-function pdfLinkResponse(pdfId, res) {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify({pdfurl: '/pdf/'+pdfId}));
+function pdfLinkResponse(pdfId, filename, res) {
+    var pdfUrl = '/pdf/'+pdfId+'/'+filename
+    res.writeHead(200, { 'Content-Type': 'application/json' });    
+    res.write(JSON.stringify({pdfurl: pdfUrl}));
     res.end();
 }
 
 
-function pdfContentResponse(pdfId, res) {
+function pdfContentResponse(pdfId, filename, res) {
     var buffer = cache.get(pdfId);
+    if (!filename) filename = "formresults.pdf"
     if (buffer === undefined) {
         res.status(404);
     } else {
         res.writeHead(200, {
             'Content-Type': 'application/pdf',
-            'Content-Disposition': 'attachment; filename=formresults.pdf' });
+            'Content-Disposition': 'attachment; filename='+filename });
         res.write(buffer);
     }    
     res.end();
@@ -66,9 +79,9 @@ server.post('/pdf', function(req, res, next) {
     createPdf(req,res);
 });
 
-server.get('/pdf/:pdfid', function(req, res, next) {
+server.get('/pdf/:pdfid/:filename', function(req, res, next) {
     console.log('GET /pdf: '+req.params.pdfid );
-    pdfContentResponse(req.params.pdfid, res);
+    pdfContentResponse(req.params.pdfid, req.params.filename,  res);
     return next();
 });
 
